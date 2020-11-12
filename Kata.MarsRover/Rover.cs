@@ -6,19 +6,19 @@ namespace Kata.MarsRover
 {
     public class Rover
     {
-        private Direction directionV2 = Direction.North;
+        private Direction direction = Direction.North;
 
         public string Execute(string commands)
         {
             foreach (var command in commands.ToCharArray())
             {
                 if (command == 'R')
-                    directionV2 = directionV2.Right();
+                    direction = direction.Right();
                 if (command == 'L')
-                    directionV2 = directionV2.Left();
+                    direction = direction.Left();
             }
 
-            return $"0:0:{directionV2.Value}";
+            return $"0:0:{direction.Value}";
         }
     }
     
