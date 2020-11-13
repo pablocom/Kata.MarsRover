@@ -17,14 +17,9 @@
         {
             foreach (var command in commands.ToCharArray())
             {
-                if (command == 'R') 
-                    direction = direction.Right();
-                if (command == 'L') 
-                    direction = direction.Left();
-                if (command == 'M')
-                {
-                    coordinate = grid.TryToMoveFor(coordinate, direction);
-                }
+                if (command == 'R') direction = direction.RotateRight();
+                if (command == 'L') direction = direction.RotateLeft();
+                if (command == 'M') coordinate = grid.TryToMoveFor(coordinate, direction);
             }
         }
     }

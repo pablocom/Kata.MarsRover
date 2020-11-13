@@ -9,8 +9,7 @@ namespace Kata.MarsRover.Tests
         [SetUp]
         public void Initialise()
         {
-            var grid = new Grid();
-            rover = new Rover(grid);
+            rover = new Rover(new Grid());
         }
 
         [TestCase("R", "0:0:E")]
@@ -92,7 +91,7 @@ namespace Kata.MarsRover.Tests
         }
         
         [TestCase("MMMM", 0, 4,"0:3:N")]
-        [TestCase("RMMM", 3, 0,"2:0:E")]
+        [TestCase("RMMMMMM", 3, 0,"2:0:E")]
         public void StopAtObstacle(string command, int obstaclePositionX, int obstaclePositionY, string expectedPosition)
         {
             var obstacle = Coordinate.CreateInstance(obstaclePositionX, obstaclePositionY);

@@ -19,6 +19,9 @@ namespace Kata.MarsRover
         private readonly string leftValue;
         private readonly string rightValue;
 
+        private Direction()
+        { }
+
         private Direction(string value, string leftValue, string rightValue)
         {
             this.Value = value;
@@ -26,7 +29,7 @@ namespace Kata.MarsRover
             this.rightValue = rightValue;
         }
 
-        public Direction Right() => AllDirections.First(direction => direction.Value == this.rightValue);
-        public Direction Left() => AllDirections.First(direction => direction.Value == this.leftValue);
+        public Direction RotateRight() => AllDirections.First(direction => direction.Value == this.rightValue);
+        public Direction RotateLeft() => AllDirections.First(direction => direction.Value == this.leftValue);
     }
 }
