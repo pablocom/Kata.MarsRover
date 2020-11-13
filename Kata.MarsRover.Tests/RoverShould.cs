@@ -1,3 +1,4 @@
+using Kata.MarsRover.RoverCommands;
 using NUnit.Framework;
 
 namespace Kata.MarsRover.Tests
@@ -118,6 +119,20 @@ namespace Kata.MarsRover.Tests
             rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
+        }
+
+        [Test]
+        public void ThrowsUnrecognizedCommandException()
+        {
+            var notRecognizedCommand = "W";
+            
+            var exception = Assert.Throws<UnrecognizedCommandException>(() =>
+            {
+                rover.SetCommands(notRecognizedCommand);
+            });
+            
+            Assert.That(exception.Message, 
+                Is.EqualTo($"Command of type {notRecognizedCommand} not recognized"));
         }
     }
 }
