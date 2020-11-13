@@ -19,7 +19,7 @@ namespace Kata.MarsRover
             this.obstacles = obstacles;
         }
 
-        public Coordinate GetNextCoordinateFor(Coordinate coordinate, Direction direction)
+        public Coordinate TryToMoveFor(Coordinate coordinate, Direction direction)
         {
             var y = coordinate.Y;
             var x = coordinate.X;

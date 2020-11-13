@@ -80,8 +80,8 @@ namespace Kata.MarsRover.Tests
         public void StopAtObstacle(string command, int obstaclePositionX, int obstaclePositionY, string expectedPosition)
         {
             var obstacle = Coordinate.CreateInstance(obstaclePositionX, obstaclePositionY);
-            var gridWithObstacleAt04 = new Grid(obstacle);
-            rover = new Rover(gridWithObstacleAt04);
+            var gridWithObstacle = new Grid(obstacle);
+            rover = new Rover(gridWithObstacle);
             
             Assert.That(rover.Execute(command), Is.EqualTo(expectedPosition));
         }

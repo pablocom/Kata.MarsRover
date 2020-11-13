@@ -19,8 +19,10 @@
                     direction = direction.Right();
                 if (command == 'L') 
                     direction = direction.Left();
-                if (command == 'M') 
-                    coordinate = grid.GetNextCoordinateFor(coordinate, direction);
+                if (command == 'M')
+                {
+                    coordinate = grid.TryToMoveFor(coordinate, direction);
+                }
             }
 
             return $"{coordinate.X}:{coordinate.Y}:{direction.Value}";
