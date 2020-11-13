@@ -16,9 +16,11 @@ namespace Kata.MarsRover.Tests
         [TestCase("RR", "0:0:S")]
         [TestCase("RRR", "0:0:W")]
         [TestCase("RRRR", "0:0:N")]
-        public void RotateRight(string command, string expectedPosition)
+        public void RotateRight(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -27,18 +29,22 @@ namespace Kata.MarsRover.Tests
         [TestCase("LL", "0:0:S")]
         [TestCase("LLL", "0:0:E")]
         [TestCase("LLLL", "0:0:N")]
-        public void RotateLeft(string command, string expectedPosition)
+        public void RotateLeft(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
 
         [TestCase("M", "0:1:N")]
         [TestCase("MMM", "0:3:N")]
-        public void MoveUp(string command, string expectedPosition)
+        public void MoveUp(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -46,18 +52,22 @@ namespace Kata.MarsRover.Tests
         [TestCase("MMMMMMMMM", "0:9:N")]
         [TestCase("MMMMMMMMMM", "0:0:N")]
         [TestCase("MMMMMMMMMMM", "0:1:N")]
-        public void WrapFromTopToBottomWhenMovingNorth(string command, string expectedPosition)
+        public void WrapFromTopToBottomWhenMovingNorth(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
         
         [TestCase("RM", "1:0:E")]
         [TestCase("RMMM", "3:0:E")]
-        public void MoveRight(string command, string expectedPosition)
+        public void MoveRight(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -65,40 +75,47 @@ namespace Kata.MarsRover.Tests
         [TestCase("RMMMMMMMMM", "9:0:E")]
         [TestCase("RMMMMMMMMMM", "0:0:E")]
         [TestCase("RMMMMMMMMMMM", "1:0:E")]
-        public void WrapFromRightToLeftWhenMovingEast(string command, string expectedPosition)
+        public void WrapFromRightToLeftWhenMovingEast(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
         
         [TestCase("LM", "9:0:W")]
         [TestCase("LMMMMM", "5:0:W")]
-        public void MoveLeft(string command, string expectedPosition)
+        public void MoveLeft(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
         
         [TestCase("LLM", "0:9:S")]
         [TestCase("LLMMMMM", "0:5:S")]
-        public void MoveSouth(string command, string expectedPosition)
+        public void MoveSouth(string commands, string expectedPosition)
         {
-            rover.Execute(command);
+            rover.SetCommands(commands);
+            
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
         
         [TestCase("MMMM", 0, 4,"0:3:N")]
         [TestCase("RMMMMMM", 3, 0,"2:0:E")]
-        public void StopAtObstacle(string command, int obstaclePositionX, int obstaclePositionY, string expectedPosition)
+        public void StopAtObstacle(string commands, int obstaclePositionX, int obstaclePositionY, string expectedPosition)
         {
             var obstacle = Coordinate.CreateInstance(obstaclePositionX, obstaclePositionY);
             var gridWithObstacle = new Grid(obstacle);
             rover = new Rover(gridWithObstacle);
+            rover.SetCommands(commands);
             
-            rover.Execute(command);
+            rover.ExecuteCommands();
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
