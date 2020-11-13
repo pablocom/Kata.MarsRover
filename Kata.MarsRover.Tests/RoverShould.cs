@@ -9,7 +9,8 @@ namespace Kata.MarsRover.Tests
         [SetUp]
         public void Initialise()
         {
-            rover = new Rover();
+            var grid = new Grid();
+            rover = new Rover(grid);
         }
 
         [TestCase("R", "0:0:E")]
