@@ -1,6 +1,8 @@
-﻿namespace Kata.MarsRover
+﻿using System;
+
+namespace Kata.MarsRover
 {
-    public class Coordinate
+    public struct Coordinate
     {
         public static Coordinate CreateInstance(int x, int y)
         {

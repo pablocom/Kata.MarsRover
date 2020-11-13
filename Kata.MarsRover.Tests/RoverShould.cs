@@ -74,5 +74,16 @@ namespace Kata.MarsRover.Tests
         {
             Assert.That(rover.Execute(command), Is.EqualTo(expectedPosition));
         }
+        
+        [TestCase("MMMM", 0, 4,"0:3:N")]
+        [TestCase("RMMM", 3, 0,"2:0:E")]
+        public void StopAtObstacle(string command, int obstaclePositionX, int obstaclePositionY, string expectedPosition)
+        {
+            var obstacle = Coordinate.CreateInstance(obstaclePositionX, obstaclePositionY);
+            var gridWithObstacleAt04 = new Grid(obstacle);
+            rover = new Rover(gridWithObstacleAt04);
+            
+            Assert.That(rover.Execute(command), Is.EqualTo(expectedPosition));
+        }
     }
 }
