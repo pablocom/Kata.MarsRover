@@ -19,9 +19,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("RRRR", "0:0:N")]
         public void RotateRight(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -32,9 +30,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("LLLL", "0:0:N")]
         public void RotateLeft(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -43,9 +39,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("MMM", "0:3:N")]
         public void MoveUp(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -55,9 +49,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("MMMMMMMMMMM", "0:1:N")]
         public void WrapFromTopToBottomWhenMovingNorth(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -66,9 +58,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("RMMM", "3:0:E")]
         public void MoveRight(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -78,9 +68,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("RMMMMMMMMMMM", "1:0:E")]
         public void WrapFromRightToLeftWhenMovingEast(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -89,9 +77,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("LMMMMM", "5:0:W")]
         public void MoveLeft(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -100,9 +86,7 @@ namespace Kata.MarsRover.Tests
         [TestCase("LLMMMMM", "0:5:S")]
         public void MoveSouth(string commands, string expectedPosition)
         {
-            rover.SetCommands(commands);
-            
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -114,9 +98,8 @@ namespace Kata.MarsRover.Tests
             var obstacle = Coordinate.CreateInstance(obstaclePositionX, obstaclePositionY);
             var gridWithObstacle = new Grid(obstacle);
             rover = new Rover(gridWithObstacle);
-            rover.SetCommands(commands);
             
-            rover.ExecuteCommands();
+            rover.Execute(commands);
             
             Assert.That(rover.ActualPosition, Is.EqualTo(expectedPosition));
         }
@@ -128,7 +111,7 @@ namespace Kata.MarsRover.Tests
             
             var exception = Assert.Throws<UnrecognizedCommandException>(() =>
             {
-                rover.SetCommands(notRecognizedCommand);
+                rover.Execute(notRecognizedCommand);
             });
             
             Assert.That(exception.Message, 

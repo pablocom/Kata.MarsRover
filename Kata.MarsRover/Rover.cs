@@ -17,19 +17,37 @@ namespace Kata.MarsRover
             this.grid = grid;
         }
 
-        public void ExecuteCommands()
+        public void Execute(string commands)
+        {
+            SetCommands(commands);
+            ExecuteCommands();
+        } 
+        
+        private void SetCommands(string commands)
+        {
+            var commandFactory = new RoverCommandFactory(this);
+            commandList = commandFactory.CreateFrom(commands);
+        }
+        
+        private void ExecuteCommands()
         {
             foreach (var command in commandList) 
                 command.Execute();
         }
-
-        public void SetCommands(string commands)
+        
+        public void RotateRight()
         {
-            commandList = RoverCommandFactory.BuildFor(this, commands);
+            direction = direction.RotateRight();
         }
 
-        public void RotateRight() => direction = direction.RotateRight();
-        public void RotateLeft() => direction = direction.RotateLeft();
-        public void Move() => coordinate = grid.TryToMoveFor(coordinate, direction);
+        public void RotateLeft()
+        {
+            direction = direction.RotateLeft();
+        }
+
+        public void Move()
+        {
+            coordinate = grid.TryToMoveFor(coordinate, direction);
+        }
     }
 }
