@@ -1,4 +1,3 @@
-using Kata.MarsRover.RoverCommands;
 using NUnit.Framework;
 
 namespace Kata.MarsRover.Tests
@@ -13,6 +12,12 @@ namespace Kata.MarsRover.Tests
             rover = new Rover(new Grid());
         }
 
+        [Test]
+        public void StartsAt00OrientedToNorth()
+        {
+            Assert.That(rover.ActualPosition, Is.EqualTo("0:0:N"));
+        }
+        
         [TestCase("R", "0:0:E")]
         [TestCase("RR", "0:0:S")]
         [TestCase("RRR", "0:0:W")]
