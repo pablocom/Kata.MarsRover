@@ -1,6 +1,6 @@
 ﻿# Kata - Mars Rover
 
-Mars rover kata from https://katalyst.codurance.com/mars-rover. Thank you very much to Codurance for uploading such good content.
+Mars rover kata from https://katalyst.codurance.com/mars-rover.
 
 ## Instructions
 
